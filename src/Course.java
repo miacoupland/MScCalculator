@@ -2,7 +2,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.w3c.dom.Text;
 
 public class Course {
     public Label label;
@@ -79,38 +78,40 @@ public class Course {
         });
     }
 
-    public TextField getCoursework1() {
-        if (coursework1.hasProperties()) {
-            return coursework1;
-        } else {
-            return null;
+    public double getAverage() {
+        //(E10*F10)+(G10*H10)+(I10*J10) - maths logic
+        if (label.getText().equals("CSC8015 - Cybersecurity")) {
+            if (!coursework1.getText().isEmpty()) {
+                if (!coursework2.getText().isEmpty()) {
+                    if (!coursework3.getText().isEmpty()) {
+                        return Math.round((Integer.valueOf(coursework1.getText()) * 0.80) +
+                                (Integer.valueOf(coursework2.getText()) * 0.10) +
+                                (Integer.valueOf(coursework3.getText()) * 0.10));
+                    }
+                    return Math.round((Integer.valueOf(coursework1.getText()) * 0.80) +
+                            (Integer.valueOf(coursework2.getText()) * 0.10));
+                }
+                return Integer.valueOf(coursework1.getText());
+            }
         }
-    }
 
-    public TextField getCoursework2() {
-        if (coursework2.isVisible()) {
-            return coursework2;
-        } else {
-            return null;
+        if (label.getText().equals("CSC8019 - Software Engineering and Team Project")) {
+            if (!coursework1.getText().isEmpty()) {
+                if (!coursework2.getText().isEmpty()) {
+                    if (!coursework3.getText().isEmpty()) {
+                        return Math.round((Integer.valueOf(coursework1.getText()) * 0.30) +
+                                (Integer.valueOf(coursework2.getText()) * 0.20) +
+                                (Integer.valueOf(coursework3.getText()) * 0.50));
+                    }
+                    return Math.round((Integer.valueOf(coursework1.getText()) * 0.30) +
+                            (Integer.valueOf(coursework2.getText()) * 0.20));
+                }
+                return Integer.valueOf(coursework1.getText());
+            }
         }
-    }
 
-    public TextField getCoursework3() {
-        if (coursework3.isVisible()) {
-            return coursework3;
-        } else {
-            return null;
-        }
-    }
-
-    public int getAverage() {
         if (!coursework1.getText().isEmpty()) {
             if (!coursework2.getText().isEmpty()) {
-                if (!coursework3.getText().isEmpty()) {
-                    return (Integer.valueOf(coursework1.getText()) +
-                            Integer.valueOf(coursework2.getText()) +
-                            Integer.valueOf(coursework3.getText())) / 3;
-                }
                 return (Integer.valueOf(coursework1.getText()) +
                         Integer.valueOf(coursework2.getText())) / 2;
             }
