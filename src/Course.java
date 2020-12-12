@@ -4,21 +4,30 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class Course {
+    private String code;
+    private String name;
+    private int assignmentNo;
+    private double modWeight;
+
     public Label label;
     public TextField coursework1;
     public TextField coursework2;
     public TextField coursework3;
     public Label average;
 
-    public Course(String name) {
-        label = new Label(name);
+    public Course(String courseCode, String name, int assignmentNo, double weight) {
+        this.code = courseCode;
+        this.name = name;
+        this.assignmentNo = assignmentNo;
+        this.modWeight = weight;
+
+        label = new Label(courseCode + " - " + name);
         coursework1 = new TextField();
         coursework1.setMaxWidth(50);
         coursework2 = new TextField();
         coursework2.setMaxWidth(50);
-        coursework2.setVisible(false);
         coursework3 = new TextField();
-        coursework3.setVisible(false);
+        coursework3.setMaxWidth(50);
         average = new Label("Average: ");
         coursework1.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -26,50 +35,12 @@ public class Course {
                 average.setText("Average: " + getAverage());
             }
         });
-    }
-
-    public Course(String name, Boolean bool1) {
-        label = new Label(name);
-        coursework1 = new TextField();
-        coursework2 = new TextField();
-        coursework1.setMaxWidth(50);
-        coursework2.setMaxWidth(50);
-        coursework3 = new TextField();
-        coursework3.setVisible(false);
-        average = new Label("Average: ");
-
-        coursework1.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                average.setText("Average: " + getAverage());
-            }
-        });
-
         coursework2.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 average.setText("Average: " + getAverage());
             }
         });
-    }
-
-    public Course(String name, Boolean bool1, Boolean bool2) {
-        label = new Label(name);
-        coursework1 = new TextField();
-        coursework2 = new TextField();
-        coursework3 = new TextField();
-        coursework1.setMaxWidth(50);
-        coursework2.setMaxWidth(50);
-        coursework3.setMaxWidth(50);
-        average = new Label("Average: ");
-
-        coursework1.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                average.setText("Average: " + getAverage());
-            }
-        });
-
         coursework3.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
@@ -80,7 +51,7 @@ public class Course {
 
     public double getAverage() {
         //(E10*F10)+(G10*H10)+(I10*J10) - maths logic
-        if (label.getText().equals("CSC8015 - Cybersecurity")) {
+        if (getModWeight() == 11.1) {
             if (!coursework1.getText().isEmpty()) {
                 if (!coursework2.getText().isEmpty()) {
                     if (!coursework3.getText().isEmpty()) {
@@ -95,7 +66,7 @@ public class Course {
             }
         }
 
-        if (label.getText().equals("CSC8019 - Software Engineering and Team Project")) {
+        if (getModWeight() == 33.3) {
             if (!coursework1.getText().isEmpty()) {
                 if (!coursework2.getText().isEmpty()) {
                     if (!coursework3.getText().isEmpty()) {
@@ -120,4 +91,28 @@ public class Course {
         return -1;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAssignmentNo() {
+        return this.assignmentNo;
+    }
+
+    public double getModWeight() {
+        return this.modWeight;
+    }
+
+    public Label getLabel() {
+        return this.label;
+    }
+
+    @Override
+    public String toString() {
+        return code + " " + name + " has " + this.assignmentNo + " coursework assignments.";
+    }
 }
