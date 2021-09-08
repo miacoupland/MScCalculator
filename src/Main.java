@@ -8,12 +8,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("MSc Computer Science Calculator");
         Controller c = new Controller();
         c.read();
-        primaryStage.setScene(new Scene(addComponents(c), 800,500));
+        primaryStage.setScene(new Scene(addComponents(c), 800, 500));
         primaryStage.show();
     }
 
@@ -35,17 +35,17 @@ public class Main extends Application {
             int weightedAvg = 0;
             int avg = 0;
             int count = 0;
-            for (Course course: c.getCourses()) {
+            for (Course course : c.getCourses()) {
                 if (course.getAverage() > 0) {
                     avg += course.getAverage();
                     if (course.getModWeight() == 11.1) {
-                        weightedAvg += course.getAverage() * 20/180;
+                        weightedAvg += course.getAverage() * 20 / 180;
                         count++;
                     } else if (course.getModWeight() == 33.3) {
-                        weightedAvg += course.getAverage() * 60/180;
+                        weightedAvg += course.getAverage() * 60 / 180;
                         count++;
                     } else {
-                        weightedAvg += course.getAverage() * 10/180;
+                        weightedAvg += course.getAverage() * 10 / 180;
                         count++;
                     }
                 }

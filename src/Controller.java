@@ -30,7 +30,6 @@ public class Controller {
                 Course c1 = new Course(pieces[0], pieces[1], Integer.valueOf(pieces[2]), Double.valueOf(pieces[3]));
                 Courses.add(c1);
                 System.out.println(c1.getAssignmentNo());
-
             }
         } catch (Exception e) {
             System.out.println("There was a problem reading the file.");

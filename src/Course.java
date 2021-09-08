@@ -91,14 +91,6 @@ public class Course {
         return -1;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public int getAssignmentNo() {
         return this.assignmentNo;
     }
